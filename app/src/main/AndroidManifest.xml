@@ -13,6 +13,12 @@
         android:theme="@style/Theme.DogsLoversApp"
         tools:targetApi="31">
         <activity
+            android:name=".BreedGeneratorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OptionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignInActivity"
             android:exported="false" />
         <activity

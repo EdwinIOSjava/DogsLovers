@@ -22,38 +22,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
-
+        // Inflar el layout usando View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)// aqui inicializamos el binding
         setContentView(binding.root)// aqui le decimos que usemos el binding.root
 
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//        Log.d("MainActivity", "Binding inicializado correctamente: ${::binding.isInitialized}")
-//        Log.d("MainActivity", "signInButton es: ${binding.signInButton}")
-
-        val signInButton = findViewById<Button>(R.id.signInButton)
-        signInButton.setOnClickListener {
-            Log.d("MainActivity", "Botón SignIn presionado")
-            navigateSignInView()
-        }
-
-        //initListeners()
 
 
-
-
-        // escuchamos el click en el boton y cambiamos de layout
+        initListeners()
 
 
     }
 
     private fun initListeners() {
-         binding.signInButton?.setOnClickListener {
-             Log.d("MainActivity", "SignIn button clicked!")
+         binding.signInButton.setOnClickListener {
              navigateSignInView()
          }
         binding.signUpButton.setOnClickListener {
@@ -66,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun navigateSignUpView(){
-        val intent = Intent(this, navigateSignUpView()::class.java)
+        val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
 }

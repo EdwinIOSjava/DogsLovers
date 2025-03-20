@@ -6,19 +6,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.dogsloversapp.databinding.ActivitySignInBinding
+import com.example.dogsloversapp.databinding.ActivityOptionsBinding
 
-class SignInActivity : AppCompatActivity() {
-
-    lateinit var binding: ActivitySignInBinding// creamos la variable binding de tipo ActivityMainBinding
-
+class OptionsActivity : AppCompatActivity() {
+    lateinit var binding : ActivityOptionsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivitySignInBinding.inflate(layoutInflater)// aqui inicializamos el binding
-        setContentView(binding.root)// aqui le decimos que usemos el binding.root
+        binding = ActivityOptionsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -27,18 +25,20 @@ class SignInActivity : AppCompatActivity() {
             insets
         }
 
-        initListeners()
+        initComponets()
 
     }
-    private fun initListeners() {
-        binding.floatingActionButton.setOnClickListener {
-            navigateOptionsActivityView()
+    fun initComponets(){
+        binding.searchSpecificBreedButton.setOnClickListener {
+            navigateBreedGeneratorView()
         }
-
+        binding.searchRandomBreedButton.setOnClickListener {
+            navigateBreedGeneratorView()
+        }
     }
-    fun navigateOptionsActivityView(){
-        val intent = Intent(this, OptionsActivity::class.java)
+
+    private fun navigateBreedGeneratorView() {
+        val intent= Intent(this, BreedGeneratorActivity::class.java)
         startActivity(intent)
     }
-
 }

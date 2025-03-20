@@ -2,4 +2,7 @@
 <resources>
     <string name="helper_text">nombre@email.com</string>
     <string name="password">Password</string>
+    <string name="razaIn">Raza</string>
+    <string name="action_search">Search</string>
+    <string name="searchbar_hint">que raza buscas ?</string>
 </resources>

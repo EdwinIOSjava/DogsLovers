@@ -1,25 +1,28 @@
 package com.example.dogsloversapp
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
+import com.example.dogsloversapp.databinding.ActivityBreedGeneratorBinding
 import com.example.dogsloversapp.databinding.ActivitySignInBinding
 
-class SignInActivity : AppCompatActivity() {
+class BreedGeneratorActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivitySignInBinding// creamos la variable binding de tipo ActivityMainBinding
-
+    lateinit var binding: ActivityBreedGeneratorBinding// creamos la variable binding de tipo ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivitySignInBinding.inflate(layoutInflater)// aqui inicializamos el binding
+        binding = ActivityBreedGeneratorBinding.inflate(layoutInflater)// aqui inicializamos el binding
         setContentView(binding.root)// aqui le decimos que usemos el binding.root
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -27,18 +30,11 @@ class SignInActivity : AppCompatActivity() {
             insets
         }
 
-        initListeners()
-
-    }
-    private fun initListeners() {
-        binding.floatingActionButton.setOnClickListener {
-            navigateOptionsActivityView()
+        binding.searchView.editText.addTextChangedListener {
+            println("Texto Buscado: ${binding.searchView.editText.text}")
         }
+    }
 
-    }
-    fun navigateOptionsActivityView(){
-        val intent = Intent(this, OptionsActivity::class.java)
-        startActivity(intent)
-    }
+
 
 }
