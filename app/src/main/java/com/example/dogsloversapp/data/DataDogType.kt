@@ -10,7 +10,17 @@ class Breed(
     val status: String
 )
 
-class BreedsList (
+data class BreedsList (
+    val message: Map<String, List<String>>,
+    val status: String
+)
+
+data class BreedImages (
+    val message: List<String>,
+    val status: String
+)
+
+data class BreedRandomImage (
     val message: String,
     val status: String
 )

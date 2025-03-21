@@ -66,7 +66,22 @@ class MainActivity : AppCompatActivity() {
     private fun fetchDogs() {
         lifecycleScope.launch {
             try {
-                val response = RetrofitInstance.api.getBreeds()
+                // Obtener todas las razas y subrazas
+                /*val response = RetrofitInstance.api.getBreeds()
+                for (breed in response.message.keys) {
+                    println(breed)
+                    println("Subrazas: ${response.message[breed]}")
+                }*/
+
+                // Obtener lista de imagenes de una raza
+                /*val response = RetrofitInstance.api.getBreedImages("terrier")
+                for (image in response.message) {
+                    println(image)
+                }*/
+
+                // Obtener imagen aleatoria de una raza
+                val response = RetrofitInstance.api.getBreedRandomImage("terrier")
+                println(response.message)
                 Log.d("RETROFIT",response.toString())// imprime la respuesta en el logcat
             } catch (e: Exception) {
                 Log.e("RETROFIT", "Error en la llamada a la API: ",e)
