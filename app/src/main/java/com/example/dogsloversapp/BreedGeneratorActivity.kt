@@ -1,6 +1,7 @@
 package com.example.dogsloversapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,8 @@ class BreedGeneratorActivity : AppCompatActivity() {
 
         binding.searchView.editText.addTextChangedListener {
             println("Texto Buscado: ${binding.searchView.editText.text}")
+            Log.i("search","${binding.searchView.editText.text}")
+
         }
     }
 

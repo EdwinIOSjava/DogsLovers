@@ -1,16 +1,21 @@
-package com.example.dogsloversapp
+package com.example.dogsloversapp.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.dogsloversapp.R
+import com.example.dogsloversapp.data.BreedsList
 import com.example.dogsloversapp.databinding.ActivityMainBinding
+import com.example.dogsloversapp.service.RetrofitInstance
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,25 +40,38 @@ class MainActivity : AppCompatActivity() {
 
 
         initListeners()
-
+        fetchDogs()
 
     }
 
     private fun initListeners() {
-         binding.signInButton.setOnClickListener {
-             navigateSignInView()
-         }
+        binding.signInButton.setOnClickListener {
+            navigateSignInView()
+        }
         binding.signUpButton.setOnClickListener {
             navigateSignUpView()
         }
     }
 
-    fun navigateSignInView(){
+    fun navigateSignInView() {
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
     }
-    fun navigateSignUpView(){
+
+    fun navigateSignUpView() {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
+
+    private fun fetchDogs() {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitInstance.api.getBreeds()
+                Log.d("RETROFIT",response.toString())// imprime la respuesta en el logcat
+            } catch (e: Exception) {
+                Log.e("RETROFIT", "Error en la llamada a la API: ",e)
+            }
+        }
+    }
+
 }

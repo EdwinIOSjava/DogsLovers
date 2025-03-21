@@ -1,4 +1,4 @@
-package com.example.dogsloversapp
+package com.example.dogsloversapp.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.dogsloversapp.R
 import com.example.dogsloversapp.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
